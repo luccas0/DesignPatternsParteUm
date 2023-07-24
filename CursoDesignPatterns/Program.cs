@@ -1,14 +1,10 @@
-﻿using CursoDesignPatterns.Modulo1;
+using CursoDesignPatterns.Modulo1;
 using CursoDesignPatterns.Modulo1.Desafio1;
 using CursoDesignPatterns.Modulo2;
-using CursoDesignPatterns.Modulo2.Desafio1;
 using CursoDesignPatterns.Modulo3;
 using CursoDesignPatterns.Modulo3.Desafio1;
 using CursoDesignPatterns.Modulo4;
 using CursoDesignPatterns.Modulo6;
-using CursoDesignPatterns.Modulo7;
-using CursoDesignPatterns.Modulo7.Desafio2;
-using System.Net.Http.Headers;
 
 namespace CursoDesignPatterns
 {
@@ -20,12 +16,17 @@ namespace CursoDesignPatterns
 
             Orcamento orcamento = new Orcamento(500.0);
 
+            orcamento.AdicionaItem(new Item("CANETA", 250.0));
+            orcamento.AdicionaItem(new Item("LAPIS", 250.0));
+
+            Console.WriteLine("Valor do orçamento: " + orcamento.Valor);
+
             #region Desafios Strategy
 
             Orcamento reforma = new Orcamento(500.0);
 
             Imposto novoImposto = new ICCC();
-            Console.WriteLine("ICCC: " + novoImposto.Calcula(reforma));
+            Console.WriteLine("Calculo do ICCC: " + novoImposto.Calcula(reforma));
 
             #endregion
 
@@ -34,7 +35,7 @@ namespace CursoDesignPatterns
             CalculadorDeDescontos calculador = new CalculadorDeDescontos();
             double desconto = calculador.Calcula(orcamento);
 
-            Console.WriteLine("Desconto: " +desconto);
+            Console.WriteLine("Calculo do desconto: " +desconto);
             #endregion
 
             #region Desafios Template
@@ -42,8 +43,8 @@ namespace CursoDesignPatterns
             TemplateDeImpostoCondicional icpp = new ICPP();
             TemplateDeImpostoCondicional ikcv = new IKCV();
 
-            Console.WriteLine("ICPP: " + icpp.Calcula(orcamento));
-            Console.WriteLine("IKCV: " + ikcv.Calcula(orcamento));
+            Console.WriteLine("Calculo do ICPP: " + icpp.Calcula(orcamento));
+            Console.WriteLine("Calculo do IKCV: " + ikcv.Calcula(orcamento));
 
             #endregion
 
@@ -51,7 +52,7 @@ namespace CursoDesignPatterns
 
             Imposto impostos = new ImpostoMuitoAlto(new IHIT());
 
-            Console.WriteLine("Imposto alto: " + impostos.Calcula(orcamento));
+            Console.WriteLine("Calculo do imposto alto: " + impostos.Calcula(orcamento));
 
             #endregion
 
@@ -108,5 +109,8 @@ namespace CursoDesignPatterns
         }
     }
 }
+
+
+
 
 
